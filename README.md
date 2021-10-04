@@ -1,4 +1,4 @@
-# qbittorrent-openwrt-package-mipsel
+# qBittorrent v3.x.x for OpenWRT (mipsel)
 Openwrt package Makefiles for qBittorrent and its dependencies (libtorrent-rasterbar and qt5, libtorrent-rasterbar is named as qlibtorrent-rasterbar).
 
 You can see the qt5 library packages in `Libraries --> Qt5`, the qlibtorrent-rasterbar (libtorrent-rasterbar) package in `Libraries --> qlibtorrent-rasterbar`, and the qBittorrent package in `Network --> BitTorrent --> qbittorrent`.
