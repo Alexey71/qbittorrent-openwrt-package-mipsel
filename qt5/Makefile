@@ -7,7 +7,11 @@ PKG_VERSION:=$(PKG_BASE).$(PKG_BUGFIX)
 PKG_RELEASE:=1
 
 PKG_SOURCE:=qt-everywhere-src-$(PKG_VERSION).tar.xz
-PKG_SOURCE_URL:=https://download.qt.io/archive/qt/5.15/$(PKG_VERSION)/single
+PKG_SOURCE_URL:= \
+		http://qt.mirror.constant.com/archive/qt/5.15/$(PKG_VERSION)/single \
+		https://download.qt.io/archive/qt/5.15/$(PKG_VERSION)/single \
+		http://master.qt.io/archive/qt/5.15/$(PKG_VERSION)/single \
+		https://mirrors.tuna.tsinghua.edu.cn/qt/archive/qt/5.15/$(PKG_VERSION)/single
 PKG_HASH:=3a530d1b243b5dec00bc54937455471aaa3e56849d2593edb8ded07228202240
 
 PKG_BUILD_PARALLEL:=1
@@ -48,6 +52,12 @@ define Package/qt5-network
 	DEPENDS+=+qt5-core +libopenssl
 endef
 
+define Package/qt5-sql
+	$(call Package/qt5/Default)
+	TITLE+=sql
+	DEPENDS+=+qt5-core
+endef
+
 define Package/qt5-xml
 	$(call Package/qt5/Default)
 	TITLE+=xml
@@ -72,6 +82,7 @@ define Build/Configure
 			-release \
 			-openssl-linked \
 			-qt-doubleconversion \
+			-sql-sqlite \
 			-system-zlib \
 			-no-angle \
 			-no-compile-examples \
@@ -84,7 +95,6 @@ define Build/Configure
 			-no-feature-getentropy \
 			-no-feature-concurrent \
 			-no-feature-gssapi \
-			-no-feature-sql \
 			-no-feature-testlib \
 			-no-freetype \
 			-no-gbm \
@@ -106,16 +116,6 @@ define Build/Configure
 			-no-pch \
 			-no-rpath \
 			-no-slog2 \
-			-no-sql-db2 \
-			-no-sql-ibase \
-			-no-sql-mysql \
-			-no-sql-oci \
-			-no-sql-odbc \
-			-no-sql-psql \
-			-no-sql-sqlite \
-			-no-sql-sqlite2 \
-			-no-sql-tds \
-			-no-sqlite \
 			-no-strip \
 			-no-trace \
 			-no-tslib \
@@ -174,7 +174,7 @@ define Build/Configure
 endef
 
 define Build/Compile
-	$(MAKE) -j4 -C $(PKG_BUILD_DIR)
+	$(MAKE) -j5 -C $(PKG_BUILD_DIR)
 endef
 
 define Build/InstallDev
@@ -193,6 +193,13 @@ define Package/qt5-network/install
 	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Network.so* $(1)/usr/lib
 endef
 
+define Package/qt5-sql/install
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(INSTALL_DIR) $(1)/usr/lib/Qt/plugins/sqldrivers
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Sql.so* $(1)/usr/lib
+	$(CP) $(PKG_BUILD_DIR)/qtbase/plugins/sqldrivers/*.so $(1)/usr/lib/Qt/plugins/sqldrivers
+endef
+
 define Package/qt5-xml/install
 	$(INSTALL_DIR) $(1)/usr/lib
 	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Xml.so* $(1)/usr/lib
@@ -200,4 +207,5 @@ endef
 
 $(eval $(call BuildPackage,qt5-core))
 $(eval $(call BuildPackage,qt5-network))
+$(eval $(call BuildPackage,qt5-sql))
 $(eval $(call BuildPackage,qt5-xml))
