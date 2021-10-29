@@ -15,4 +15,4 @@ Password: adminadmin
 Default qBittorrent setting folder `/etc/qBittorrent`. You can change it to your, edit the file `/etc/init.d/qbittorrent`
 
 ## Tested
-Tested on Xiaomi `Xiaomi Mi WiFi Router 3G v1` and `OpenWRT v21.02.0+`
+Tested on `Xiaomi Mi WiFi Router 3G v1` and `OpenWRT v21.02.x`
