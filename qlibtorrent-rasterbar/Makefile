@@ -25,7 +25,7 @@ define Package/qlibtorrent-rasterbar
   CATEGORY:=Libraries
   TITLE:=Rasterbar BitTorrent library
   URL:=https://www.libtorrent.org/
-  DEPENDS:=+libgcc +libstdcpp +libopenssl +boost +boost-system +boost-chrono +boost-random
+  DEPENDS:=+libgcc +libstdcpp +libopenssl +boost +boost-system
   MAINTAINER:=Arvid Norberg <arvid@libtorrent.org>
 endef
 
