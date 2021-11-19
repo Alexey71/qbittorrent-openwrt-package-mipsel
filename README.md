@@ -27,7 +27,7 @@
 Протестировано на `Xiaomi Mi WiFi Router 3G v1` и `OpenWRT v21.02.x`
 
 
-========================================================================================
+========================================================================
 # qBittorrent for OpenWRT (mipsel)
 OpenWRT package Makefiles for qBittorrent and its dependencies (libtorrent-rasterbar and qt5, libtorrent-rasterbar is named as qlibtorrent-rasterbar).
 
