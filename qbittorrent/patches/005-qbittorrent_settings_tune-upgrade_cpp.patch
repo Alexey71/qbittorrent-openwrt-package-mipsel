@@ -1,7 +1,7 @@
 Link: https://github.com/qbittorrent/qBittorrent/blob/master/src/app/upgrade.cpp
 --- a/src/app/upgrade.cpp
 +++ b/src/app/upgrade.cpp
-@@ -131,7 +131,7 @@
+@@ -249,7 +249,7 @@
  
      const QVector<DefaultValue> changedDefaults
      {
