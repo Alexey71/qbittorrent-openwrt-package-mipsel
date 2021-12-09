@@ -6,7 +6,7 @@ Link: https://github.com/qbittorrent/qBittorrent/blob/master/src/base/preference
  QString Preferences::getLocale() const
  {
 -    const auto localeName = value<QString>("Preferences/General/Locale");
-+    const auto localeName = value<QString>("Preferences/General/Locale", "ru_RU");
++    const auto localeName = value<QString>("Preferences/General/Locale", QLatin1String("ru_RU"));
      return (localeName.isEmpty() ? QLocale::system().name() : localeName);
  }
  
@@ -24,7 +24,7 @@ Link: https://github.com/qbittorrent/qBittorrent/blob/master/src/base/preference
  QVector<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
  {
 -    const auto subnets = value<QStringList>("Preferences/WebUI/AuthSubnetWhitelist");
-+    const auto subnets = value<QStringList>("Preferences/WebUI/AuthSubnetWhitelist", "0.0.0.0/0");
++    const auto subnets = value<QStringList>("Preferences/WebUI/AuthSubnetWhitelist", QLatin1String("0.0.0.0/0"));
  
      QVector<Utils::Net::Subnet> ret;
      ret.reserve(subnets.size());
@@ -44,7 +44,7 @@ Link: https://github.com/qbittorrent/qBittorrent/blob/master/src/base/preference
 -    // default: adminadmin
 -    const QByteArray defaultValue = "ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==";
 +    // default: openwrt
-+    const QByteArray defaultValue = "i128e0SAiHiCepXpYkVXzA==:AgO8y/Rjb92f/FwyE3WxqUM6bSV3FesBxaewL8Pbe30hF+bO+83979v0Ws1ITwEoWYamyQYsPbiuDkhpfcniBA==";
++    const QByteArray defaultValue = "128e0SAiHiCepXpYkVXzA==:AgO8y/Rjb92f/FwyE3WxqUM6bSV3FesBxaewL8Pbe30hF+bO+83979v0Ws1ITwEoWYamyQYsPbiuDkhpfcniBA==";
      return value("Preferences/WebUI/Password_PBKDF2", defaultValue);
  }
  
