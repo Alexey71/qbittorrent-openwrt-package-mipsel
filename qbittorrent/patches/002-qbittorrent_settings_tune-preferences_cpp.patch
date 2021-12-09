@@ -19,15 +19,6 @@ Link: https://github.com/qbittorrent/qBittorrent/blob/master/src/base/preference
  }
  
  void Preferences::setWebUiAuthSubnetWhitelistEnabled(const bool enabled)
-@@ -563,7 +563,7 @@
- 
- QVector<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
- {
--    const auto subnets = value<QStringList>("Preferences/WebUI/AuthSubnetWhitelist");
-+    const auto subnets = value<QStringList>("Preferences/WebUI/AuthSubnetWhitelist", QLatin1String("0.0.0.0/0"));
- 
-     QVector<Utils::Net::Subnet> ret;
-     ret.reserve(subnets.size());
 @@ -637,7 +637,7 @@
  
  QString Preferences::getWebUiUsername() const
