@@ -10,15 +10,6 @@ Link: https://github.com/qbittorrent/qBittorrent/blob/master/src/base/preference
      return (localeName.isEmpty() ? QLocale::system().name() : localeName);
  }
  
-@@ -553,7 +553,7 @@
- 
- bool Preferences::isWebUiAuthSubnetWhitelistEnabled() const
- {
--    return value("Preferences/WebUI/AuthSubnetWhitelistEnabled", false);
-+    return value("Preferences/WebUI/AuthSubnetWhitelistEnabled", true);
- }
- 
- void Preferences::setWebUiAuthSubnetWhitelistEnabled(const bool enabled)
 @@ -637,7 +637,7 @@
  
  QString Preferences::getWebUiUsername() const
