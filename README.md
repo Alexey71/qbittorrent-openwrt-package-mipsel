@@ -6,7 +6,7 @@
 
 Пакет `qt5` (qt5-core, qt5-network, qt5-sql, qt5-xml) версия 5.15.2, по пути `Libraries --> Qt5`
 
-Пакет `qlibtorrent-rasterbar` (libtorrent-rasterbar) версия 1.2.14, по пути `Libraries --> qlibtorrent-rasterbar`
+Пакет `qlibtorrent-rasterbar` (libtorrent-rasterbar) версия 1.2.15, по пути `Libraries --> qlibtorrent-rasterbar`
 
 Пакет `qBittorrent` версия из последних исходников https://github.com/qbittorrent/qBittorrent/commits/master, по пути `Network --> BitTorrent --> qbittorrent`
 
@@ -33,7 +33,7 @@ Package location in the configuration is:
 
 Package `qt5` (qt5-core, qt5-network, qt5-sql, qt5-xml) version 5.15.2, path `Libraries --> Qt5`
 
-Package `qlibtorrent-rasterbar` (libtorrent-rasterbar) version 1.2.14, path `Libraries --> qlibtorrent-rasterbar`
+Package `qlibtorrent-rasterbar` (libtorrent-rasterbar) version 1.2.15, path `Libraries --> qlibtorrent-rasterbar`
 
 Package `qBittorrent` version of the last source https://github.com/qbittorrent/qBittorrent/commits/master, path `Network --> BitTorrent --> qbittorrent`
 
