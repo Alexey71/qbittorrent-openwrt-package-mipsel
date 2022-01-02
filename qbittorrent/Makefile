@@ -2,13 +2,13 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qbittorrent
 PKG_VERSION:=4.4.0
-PKG_RELEASE=2021-12-16
+PKG_RELEASE=2022-01-02
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE:=qBittorrent-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/qbittorrent/qBittorrent.git
-PKG_SOURCE_DATE:=2021-12-16
-PKG_SOURCE_VERSION:=87e1a14a4b5f6b1f9df9d3c83bf34b61ee0128cb
+PKG_SOURCE_DATE:=2022-01-02
+PKG_SOURCE_VERSION:=dd76525372c2ce0afed1c636d391eb687d7c5801
 #PKG_MIRROR_HASH:=814D1A0436E19975B0E807EA6AECA320D622C7E989812ED784B347722EC09AF1
 
 PKG_LICENSE:=GPL-2.0+
@@ -54,7 +54,7 @@ MAKE_VARS += \
 	INSTALL_ROOT="$(PKG_INSTALL_DIR)"
 
 define Package/qbittorrent/install
-	$(INSTALL_DIR) $(1)/usr/bin $(1)/etc/init.d/
+	$(INSTALL_DIR) $(1)/usr/bin $(1)/etc/init.d
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/qbittorrent-nox $(1)/usr/bin
 	$(INSTALL_BIN) ./files/qbittorrent $(1)/etc/init.d
 endef
