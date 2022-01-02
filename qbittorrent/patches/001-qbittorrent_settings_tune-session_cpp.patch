@@ -1,7 +1,7 @@
 Link: https://github.com/qbittorrent/qBittorrent/blob/master/src/base/bittorrent/session.cpp
 --- a/src/base/bittorrent/session.cpp
 +++ b/src/base/bittorrent/session.cpp
-@@ -358,10 +358,10 @@
+@@ -332,10 +332,10 @@
      , m_connectionSpeed(BITTORRENT_SESSION_KEY("ConnectionSpeed"), 30)
      , m_socketBacklogSize(BITTORRENT_SESSION_KEY("SocketBacklogSize"), 30)
      , m_isAnonymousModeEnabled(BITTORRENT_SESSION_KEY("AnonymousModeEnabled"), false)
@@ -16,7 +16,7 @@ Link: https://github.com/qbittorrent/qBittorrent/blob/master/src/base/bittorrent
      , m_ignoreSlowTorrentsForQueueing(BITTORRENT_SESSION_KEY("IgnoreSlowTorrentsForQueueing"), false)
      , m_downloadRateForSlowTorrents(BITTORRENT_SESSION_KEY("SlowTorrentsDownloadRate"), 2)
      , m_uploadRateForSlowTorrents(BITTORRENT_SESSION_KEY("SlowTorrentsUploadRate"), 2)
-@@ -380,7 +380,7 @@
+@@ -354,7 +354,7 @@
      , m_maxUploads(BITTORRENT_SESSION_KEY("MaxUploads"), 20, lowerLimited(0, -1))
      , m_maxConnectionsPerTorrent(BITTORRENT_SESSION_KEY("MaxConnectionsPerTorrent"), 100, lowerLimited(0, -1))
      , m_maxUploadsPerTorrent(BITTORRENT_SESSION_KEY("MaxUploadsPerTorrent"), 4, lowerLimited(0, -1))
@@ -25,7 +25,7 @@ Link: https://github.com/qbittorrent/qBittorrent/blob/master/src/base/bittorrent
          , clampValue(BTProtocol::Both, BTProtocol::UTP))
      , m_isUTPRateLimited(BITTORRENT_SESSION_KEY("uTPRateLimited"), true)
      , m_utpMixedMode(BITTORRENT_SESSION_KEY("uTPMixedMode"), MixedModeAlgorithm::TCP
-@@ -393,7 +393,7 @@
+@@ -367,7 +367,7 @@
      , m_isAddTrackersEnabled(BITTORRENT_SESSION_KEY("AddTrackersEnabled"), false)
      , m_additionalTrackers(BITTORRENT_SESSION_KEY("AdditionalTrackers"))
      , m_globalMaxRatio(BITTORRENT_SESSION_KEY("GlobalMaxRatio"), -1, [](qreal r) { return r < 0 ? -1. : r;})
@@ -34,7 +34,7 @@ Link: https://github.com/qbittorrent/qBittorrent/blob/master/src/base/bittorrent
      , m_isAddTorrentPaused(BITTORRENT_SESSION_KEY("AddTorrentPaused"), false)
      , m_torrentContentLayout(BITTORRENT_SESSION_KEY("TorrentContentLayout"), TorrentContentLayout::Original)
      , m_isAppendExtensionEnabled(BITTORRENT_SESSION_KEY("AddExtensionToIncompleteFiles"), false)
-@@ -401,13 +401,13 @@
+@@ -375,13 +375,13 @@
      , m_isPreallocationEnabled(BITTORRENT_SESSION_KEY("Preallocation"), false)
      , m_torrentExportDirectory(BITTORRENT_SESSION_KEY("TorrentExportDirectory"))
      , m_finishedTorrentExportDirectory(BITTORRENT_SESSION_KEY("FinishedTorrentExportDirectory"))
@@ -53,14 +53,14 @@ Link: https://github.com/qbittorrent/qBittorrent/blob/master/src/base/bittorrent
      , m_port(BITTORRENT_SESSION_KEY("Port"), -1)
      , m_networkInterface(BITTORRENT_SESSION_KEY("Interface"))
      , m_networkInterfaceName(BITTORRENT_SESSION_KEY("InterfaceName"))
-@@ -420,8 +420,8 @@
+@@ -393,8 +393,8 @@
+     , m_seedChokingAlgorithm(BITTORRENT_SESSION_KEY("SeedChokingAlgorithm"), SeedChokingAlgorithm::FastestUpload
          , clampValue(SeedChokingAlgorithm::RoundRobin, SeedChokingAlgorithm::AntiLeech))
-     , m_storedCategories(BITTORRENT_SESSION_KEY("Categories"))
      , m_storedTags(BITTORRENT_SESSION_KEY("Tags"))
 -    , m_maxRatioAction(BITTORRENT_SESSION_KEY("MaxRatioAction"), Pause)
--    , m_defaultSavePath(BITTORRENT_SESSION_KEY("DefaultSavePath"), specialFolderLocation(SpecialFolder::Downloads), normalizePath)
+-    , m_savePath(BITTORRENT_SESSION_KEY("DefaultSavePath"), specialFolderLocation(SpecialFolder::Downloads), Utils::Fs::toUniformPath)
 +    , m_maxRatioAction(BITTORRENT_SESSION_KEY("MaxRatioAction"), Remove)
-+    , m_defaultSavePath(BITTORRENT_SESSION_KEY("DefaultSavePath"), "/mnt/sda1/Видео/", normalizePath)
-     , m_tempPath(BITTORRENT_SESSION_KEY("TempPath"), defaultSavePath() + "temp/", normalizePath)
++    , m_savePath(BITTORRENT_SESSION_KEY("DefaultSavePath"), "/mnt/sda1/Видео/", Utils::Fs::toUniformPath)
+     , m_downloadPath(BITTORRENT_SESSION_KEY("TempPath"), specialFolderLocation(SpecialFolder::Downloads) + QLatin1String("/temp"), Utils::Fs::toUniformPath)
      , m_isSubcategoriesEnabled(BITTORRENT_SESSION_KEY("SubcategoriesEnabled"), false)
-     , m_isTempPathEnabled(BITTORRENT_SESSION_KEY("TempPathEnabled"), false)
+     , m_isDownloadPathEnabled(BITTORRENT_SESSION_KEY("TempPathEnabled"), false)
