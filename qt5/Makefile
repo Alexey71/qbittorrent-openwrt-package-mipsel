@@ -22,7 +22,6 @@ PKG_BUILD_DIR=$(BUILD_DIR)/qt-everywhere-src-$(PKG_VERSION)
 include $(INCLUDE_DIR)/package.mk
 
 ifndef CONFIG_USE_GLIBC
-# not using sstrip here as this screw up the .so's somehow
 STRIP:=/bin/true
 RSTRIP:= \
 	NM="$(TOOLCHAIN_DIR)/bin/$(TARGET_CROSS)nm" \
@@ -35,32 +34,28 @@ define Package/qt5/Default
 	SECTION:=libs
 	CATEGORY:=Libraries
 	SUBMENU:=Qt5
-	TITLE:=qt5
-	URL:=http://qt-project.org
+	TITLE:=Qt 5.15.2 library for qBittorrent
+	URL:=https://qt-project-org.herokuapp.com
 	DEPENDS:=+librt +libstdcpp +libpthread +zlib @!LINUX_2_6_36
 endef
 
 define Package/qt5-core
 	$(call Package/qt5/Default)
-	TITLE+=core
 	DEPENDS+=+libatomic
 endef
 
 define Package/qt5-network
 	$(call Package/qt5/Default)
-	TITLE+=network
 	DEPENDS+=+qt5-core +libopenssl
 endef
 
 define Package/qt5-sql
 	$(call Package/qt5/Default)
-	TITLE+=sql
 	DEPENDS+=+qt5-core
 endef
 
 define Package/qt5-xml
 	$(call Package/qt5/Default)
-	TITLE+=xml
 	DEPENDS+=+qt5-core
 endef
 
@@ -89,7 +84,7 @@ define Build/Configure
 			-no-cups \
 			-no-dbus \
 			-no-directfb \
-			-no-dtls\
+			-no-dtls \
 			-no-egl \
 			-no-eglfs \
 			-no-feature-getentropy \
